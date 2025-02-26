@@ -36,15 +36,15 @@ def process_text(text):
     whitespace_count = count_whitespace(text)
     return result, whitespace_count
 
+if __name__ == "__main__":
+    text = """  tHis iz your homeWork, copy these Text to variable.
 
-text = """  tHis iz your homeWork, copy these Text to variable.
+    You NEED TO normalize it fROM letter CASEs point oF View. also, create one MORE senTENCE witH LAST WoRDS of each existING SENtence and add it to the END OF this Paragraph.
 
-  You NEED TO normalize it fROM letter CASEs point oF View. also, create one MORE senTENCE witH LAST WoRDS of each existING SENtence and add it to the END OF this Paragraph.
+    it iZ misspeLLing here. fix"iZ" with correct "is", but ONLY when it Iz a mistAKE.
 
-  it iZ misspeLLing here. fix"iZ" with correct "is", but ONLY when it Iz a mistAKE.
+    last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87."""
 
-  last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87."""
-
-result, whitespace_count = process_text(text)
-print(result)
-print(f"\nNumber of whitespace characters: {whitespace_count}")
+    result, whitespace_count = process_text(text)
+    print(result)
+    print(f"\nNumber of whitespace characters: {whitespace_count}")

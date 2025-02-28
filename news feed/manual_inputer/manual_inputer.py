@@ -1,8 +1,21 @@
 import datetime
+import os
+import shutil
+import sys 
+# Get the path to the NG_PYDQE directory
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Add the NG_PYDQE directory to the Python path
+sys.path.append(parent_dir)
+
+from csvp.main import CSVProcessor
 
 class NewsFeed:
     def __init__(self, filename="News Feed.txt"):
         self.filename = filename
+        self.output_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "output")
+        # Ensure the output folder exists
+        if not os.path.exists(self.output_folder):
+            os.makedirs(self.output_folder)
 
     def getUserInput(self, prompt):
         return input(prompt).strip()
@@ -13,7 +26,7 @@ class NewsFeed:
         if city is None:
             city = self.getUserInput("Enter city: ")
         date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
-        return f"--BREAKING NEWS--\n{text}\n{city}, {date}\n\n"
+        return f"-- BREAKING NEWS --\n{text}\n{city}, {date}\n\n"
 
     def publishAd(self, text=None, expiration_date=None):
         if text is None:
@@ -34,7 +47,7 @@ class NewsFeed:
                 print("Invalid date format. Please use DD/MM/YYYY.")
                 expiration_date = None
         
-        return f"--AD--\n{text}\nExpiration date: {expiration_date}, {days_left} days left\n\n"
+        return f"-- AD --\n{text}\nExpiration date: {expiration_date}, {days_left} days left\n\n"
 
     def publishWeather(self, city=None, temperature=None, conditions=None):
         if city is None:
@@ -43,12 +56,16 @@ class NewsFeed:
             temperature = self.getUserInput("Enter temperature (in Celsius): ")
         if conditions is None:
             conditions = self.getUserInput("Enter weather conditions: ")
-        return f"--Weather Forecast-- \nCity: {city}\nTemperature: {temperature}*C\nWeather: {conditions}\n\n"
+        return f"-- Weather Forecast -- \nCity: {city}\nTemperature: {temperature}*C\nWeather: {conditions}\n\n"
 
     def addRecord(self, record):
-        with open(self.filename, "a") as file:
+        output_file = os.path.join(self.output_folder, self.filename)
+        with open(output_file, "a") as file:
             file.write(record)
+        
         print("Record added successfully!")
+        csv_processor = CSVProcessor()
+        csv_processor.process()
 
     def run(self):
         while True:
@@ -73,3 +90,7 @@ class NewsFeed:
                 continue
             
             self.addRecord(record)
+
+if __name__ == "__main__":
+    news_feed = NewsFeed()
+    news_feed.run()

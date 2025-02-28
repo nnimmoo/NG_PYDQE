@@ -1,0 +1,18 @@
+[
+    {
+      "type": "news",
+      "text": "New park opened in the city center",
+      "city": "New York"
+    },
+    {
+      "type": "ad",
+      "text": "Summer sale at City Mall",
+      "expiration_date": "30/08/2023"
+    },
+    {
+      "type": "weather",
+      "city": "London",
+      "temperature": "22",
+      "conditions": "Partly cloudy"
+    }
+  ]

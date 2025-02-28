@@ -1,0 +1,15 @@
+<records>
+  <record type="news">
+    <text>Conclave wins big at Oscars</text>
+    <city>LA</city>
+  </record>
+  <record type="ad">
+    <text>1+1 Toothpaste</text>
+    <expiration_date>30/08/2027</expiration_date>
+  </record>
+  <record type="weather">
+    <city>Las Vegas</city>
+    <temperature>32</temperature>
+    <conditions>Hot</conditions>
+  </record>
+</records>

@@ -2,9 +2,9 @@ import datetime
 import os
 import shutil
 import sys 
-# Get the path to the NG_PYDQE directory
+
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Add the NG_PYDQE directory to the Python path
+
 sys.path.append(parent_dir)
 
 from csvp.main import CSVProcessor

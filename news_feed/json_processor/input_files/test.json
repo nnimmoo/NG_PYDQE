@@ -1,0 +1,18 @@
+[
+    {
+      "type": "news",
+      "text": "New hunter shakes the city!",
+      "city": "Sanctuary"
+    },
+    {
+      "type": "ad",
+      "text": "New Guns at Marcus",
+      "expiration_date": "30/09/2305"
+    },
+    {
+      "type": "weather",
+      "city": "Three Horns - Divide",
+      "temperature": "-25",
+      "conditions": "Freezing cold"
+    }
+  ]

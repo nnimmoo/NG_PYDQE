@@ -2,24 +2,28 @@ import datetime
 import sys
 import os
 
-# Get the path to the NG_PYDQE directory
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Add the NG_PYDQE directory to the Python path
-sys.path.append(parent_dir)
+# Get the path to the project root directory (two levels up from the current file)
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add the project root directory to the Python path
+sys.path.append(project_root)
 
+# Now you can import from functions
 from functions.task3 import capitalizeSentences
 from manual_inputer.manual_inputer import NewsFeed
 from csvp.main import CSVProcessor
 
 class TXTFileProcessor:
-    def __init__(self, news_feed, input_folder="input_files", output_folder="output"):
+    def __init__(self, news_feed, input_folder=None, output_folder="output"):
         self.news_feed = news_feed
-        self.input_folder = input_folder
-        self.output_folder = os.path.join(parent_dir, output_folder)
+        if input_folder is None:
+            self.input_folder = os.path.join(project_root, "news_feed", "txt_processor", "input_files")
+        else:
+            self.input_folder = os.path.join(project_root, input_folder)
+        self.output_folder = os.path.join(project_root, output_folder)
         
-        # Ensure the output folder exists
-        if not os.path.exists(self.output_folder):
-            os.makedirs(self.output_folder)
+        # Ensure the input and output folders exist
+        os.makedirs(self.input_folder, exist_ok=True)
+        os.makedirs(self.output_folder, exist_ok=True)
 
     def process_file(self):
         num_records = self.get_num_records()
@@ -37,24 +41,29 @@ class TXTFileProcessor:
             content = file.read()
 
         records = self.parse_records(content)
-
-        output_file = os.path.join(self.output_folder, "News Feed.txt")
         
-        for record in records[:num_records]:
+        processed_records = 0
+        for record in records:
+            if processed_records >= num_records:
+                break
             normalized_record = self.normalize_text(record['content'])
             if record['type'] == 'news':
-                self.add_to_output_file(output_file, self.news_feed.publishNews(normalized_record, record['city']))
+                self.news_feed.addRecord(self.news_feed.publishNews(normalized_record, record['city']))
             elif record['type'] == 'ad':
-                self.add_to_output_file(output_file, self.news_feed.publishAd(normalized_record, record['expiration_date']))
+                self.news_feed.addRecord(self.news_feed.publishAd(normalized_record, record['expiration_date']))
             elif record['type'] == 'weather':
-                self.add_to_output_file(output_file, self.news_feed.publishWeather(record['city'], record['temperature'], normalized_record))
+                self.news_feed.addRecord(self.news_feed.publishWeather(record['city'], record['temperature'], normalized_record))
+            processed_records += 1
 
-        print(f"Processed {min(num_records, len(records))} records from {file_path}")
-
+        print(f"\nProcessed and added {processed_records} records from {file_path}")
+        
+        # os.remove(file_path)
+        # print(f"File {file_path} has been removed after successful processing.")
+        
     def get_num_records(self):
         while True:
             try:
-                num_records = int(input("How many records do you want to parse? "))
+                num_records = int(input("How many records from TXT file do you want to parse? "))
                 if num_records > 0:
                     return num_records
                 else:
@@ -65,7 +74,7 @@ class TXTFileProcessor:
     def get_file_path(self):
         default_file = self.get_default_file()
         if default_file:
-            use_default = input(f"Use default file ({default_file})? (y/n): ").lower().strip()
+            use_default = input(f"Use default file ({os.path.join(self.input_folder, default_file)})? (y/n): ").lower().strip()
             if use_default == 'y':
                 return os.path.join(self.input_folder, default_file)
         
@@ -80,9 +89,13 @@ class TXTFileProcessor:
                     return None
 
     def get_default_file(self):
-        files = [f for f in os.listdir(self.input_folder) if f.endswith('.txt')]
-        return files[0] if files else None
-
+        try:
+            files = [f for f in os.listdir(self.input_folder) if f.endswith('.txt')]
+            return files[0] if files else None
+        except FileNotFoundError:
+            print(f"Input folder not found: {self.input_folder}")
+            return None
+        
     def parse_records(self, content):
         records = []
         lines = content.split('\n')
@@ -118,23 +131,6 @@ class TXTFileProcessor:
 if __name__ == "__main__":
     news_feed = NewsFeed()
     file_processor = TXTFileProcessor(news_feed)
-
-    while True:
-        print("\nSelect an option:")
-        print("1. Manual input")
-        print("2. Process file")
-        print("3. Exit")
-        
-        choice = input("Enter your choice (1-3): ").strip()
-        
-        if choice == '1':
-            news_feed.run()
-        elif choice == '2':
-            file_processor.process_file()
-        elif choice == '3':
-            break
-        else:
-            print("Invalid choice. Please try again.")
-
+    file_processor.process_file()
     csv_processor = CSVProcessor()
     csv_processor.process()

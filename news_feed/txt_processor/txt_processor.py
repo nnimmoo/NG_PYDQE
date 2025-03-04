@@ -127,7 +127,8 @@ class TXTFileProcessor:
     def add_to_output_file(self, file_path, content):
         with open(file_path, 'a') as file:
             file.write(content)
-
+            
+# Output is in news_feed/output folder (due to newer tasks having one common file)
 if __name__ == "__main__":
     news_feed = NewsFeed()
     file_processor = TXTFileProcessor(news_feed)

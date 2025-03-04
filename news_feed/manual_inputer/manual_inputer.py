@@ -91,6 +91,7 @@ class NewsFeed:
             
             self.addRecord(record)
 
+# Output is in news_feed/output folder (due to newer tasks having one common file)
 if __name__ == "__main__":
     news_feed = NewsFeed()
     news_feed.run()

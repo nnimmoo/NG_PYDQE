@@ -43,7 +43,9 @@ class MainRunner:
                 print("Invalid choice. Please try again.")
 
         print("Thank you for using the News Feed system! Till Later ^^")
-
+        
+# Output is in news_feed/output folder (due to newer tasks having one common file)
 if __name__ == "__main__":
+# main runner which acts as a connector of all processors
     runner = MainRunner()
-    runner.run()
+    runner.run() 

@@ -100,6 +100,8 @@ class JSONProcessor:
         else:
             print(f"Unknown record type: {record_type}")
 
+# Output is in news_feed/output folder (due to newer tasks having one common file)
+
 if __name__ == "__main__":
     news_feed = NewsFeed()
     json_processor = JSONProcessor(news_feed)

@@ -48,9 +48,9 @@ Output Located in folder: ***output***
 
 ### Task 7: CSV Parsing
 Expand news_feed with additional class, which allow to provide records by CSV file:
-1.Define your input format (one or many records)
-2.Default folder or user provided file path
-3.Remove file if it was successfully processed
+- Define your input format (one or many records)
+- Default folder or user provided file path
+- Remove file if it was successfully processed
 
 Script Located in folder: ***news feed / csvs***
 

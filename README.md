@@ -33,6 +33,7 @@ Tool, which will do user generated news feed:
 
 
 Script Located in folder: ***news feed / manual_inputer***
+
 Output Located in folder: ***output***
 
 ### Task 6: Module. Files.
@@ -42,6 +43,7 @@ Expand news_feed with additional class, which allow to provide records by TXT fi
 - Remove file if it was successfully processed
 
 Script Located in folder: ***news feed / txt_processor***
+
 Output Located in folder: ***output***
 
 ### Task 7: CSV Parsing
@@ -51,6 +53,7 @@ Expand news_feed with additional class, which allow to provide records by CSV fi
 3.Remove file if it was successfully processed
 
 Script Located in folder: ***news feed / csvs***
+
 Output Located in folder: ***output***
 
 ### Task 8: JSON Module
@@ -60,6 +63,7 @@ Expand news_feed with additional class, which allow to provide records by JSON f
 - Remove file if it was successfully processed
 
 Script Located in folder: ***news feed / json_processor***
+
 Output Located in folder: ***output***
 
 ### Task 9: XML Module
@@ -69,6 +73,7 @@ Expand news_feed with additional class, which allow to provide records by XML fi
 - Remove file if it was successfully processed
 
 Script Located in folder: ***news feed / xml_processor***
+
 Output Located in folder: ***output***
 
 ### Task 10: Database API

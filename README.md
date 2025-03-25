@@ -32,7 +32,7 @@ Tool, which will do user generated news feed:
 - Weather Forecast - city, temperature and condition as text input.
 
 
-Script Located in folder: ***news feed / manual_inputer***
+Script Located in folder: ***news_feed / manual_inputer***
 
 Output Located in folder: ***output***
 
@@ -42,7 +42,7 @@ Expand news_feed with additional class, which allow to provide records by TXT fi
 - Default folder or user provided file path
 - Remove file if it was successfully processed
 
-Script Located in folder: ***news feed / txt_processor***
+Script Located in folder: ***news_feed / txt_processor***
 
 Output Located in folder: ***output***
 
@@ -52,7 +52,7 @@ Expand news_feed with additional class, which allow to provide records by CSV fi
 - Default folder or user provided file path
 - Remove file if it was successfully processed
 
-Script Located in folder: ***news feed / csvs***
+Script Located in folder: ***news_feed / csvs***
 
 Output Located in folder: ***output***
 
@@ -62,7 +62,7 @@ Expand news_feed with additional class, which allow to provide records by JSON f
 - Default folder or user provided file path
 - Remove file if it was successfully processed
 
-Script Located in folder: ***news feed / json_processor***
+Script Located in folder: ***news_feed / json_processor***
 
 Output Located in folder: ***output***
 
@@ -72,12 +72,26 @@ Expand news_feed with additional class, which allow to provide records by XML fi
 - Default folder or user provided file path
 - Remove file if it was successfully processed
 
-Script Located in folder: ***news feed / xml_processor***
+Script Located in folder: ***news_feed / xml_processor***
 
 Output Located in folder: ***output***
 
 ### Task 10: Database API
-tbd
+Expand news_feed with additional class, which allows to save records in the database.
+ - SQlite database allows us to save records in three different tables, according to their type.
+ - With the new class integrated now in NewsFeed class, all the records added to database, no matter the input type.
+ - No duplicate rows check, enables us to have unique records in the database.
+
+ 
+Script Located in folder: ***news_feed / db_processor***
+Database Located in folder: ***news_feed***
 
 ### Task 11: Final Task
-tbd
+Tool which calculates straight-line distance between different cities based on coordinates:
+ 1. User can provide two city names by console.
+ 2. If tool do not know about city coordinates, it will ask you for input and store it in SQLite database for future uses.
+ 3. Returns distance between cities in kilometers.
+
+Script Located in folder: ***final_task***
+Database Located in folder: ***final_task***
+
